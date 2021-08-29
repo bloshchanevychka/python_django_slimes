@@ -1,0 +1,14 @@
+<h2>Yes, I am {{slime.action}}ing!</h2>
+<h3> Lets change my action! (If you don`t wanxt changes, just choose same action)</h3>
+
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'slime_behavior:action_change' slime.name %}" method="post">
+{% csrf_token %}
+{% for action in all_actions %}
+    <input type="radio" name="action_id" id="choice{{ forloop.counter }}" value="{{ action.id }}">
+    <label for="choice{{ forloop.counter }}">{{ action.action_name }}</label><br>
+{% endfor %}
+<input type="submit" value="Vote">
+</form>

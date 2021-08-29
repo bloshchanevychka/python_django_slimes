@@ -1,0 +1,14 @@
+<!-- хуярить к списку слаймов опцию 2 форм - екшены и детали-->
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'slime_behavior/style.css'%}">
+{% if all_slimes %}
+<h2>Hi, slimes!</h2>
+    <ul>
+    {% for slime_ in all_slimes %}
+        <li>{{slime_.name}}  <a href="{% url 'slime_behavior:slime_details' slime_.id %}">Details</a>        
+        	<a href="{% url 'slime_behavior:slime' slime_.name %}">Action</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No slimes are available.</p>
+{% endif %}

@@ -1,0 +1,14 @@
+<h2>My name is {{slime.name}}. I am a(n) {{slime.type}} slime!</h2>
+<h3> Try to guess, what I am doing?</h3>
+
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'slime_behavior:action' slime.name %}" method="post">
+{% csrf_token %}
+{% for action in all_actions %}
+    <input type="radio" name="action_id" id="choice{{ forloop.counter }}" value="{{ action.id }}">
+    <label for="choice{{ forloop.counter }}">{{ action.action_name }}</label><br>
+{% endfor %}
+<input type="submit" value="Vote">
+</form>
